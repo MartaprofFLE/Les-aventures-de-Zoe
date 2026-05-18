@@ -1,0 +1,970 @@
+
+<!doctype html>
+<html lang="ca">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Missió Zoé (Aula PRO v2) — Illa del tresor 🏝️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--sage:#3d7a52;--sage-l:#e6f2eb;--sage-m:#a8cfb8;--sage-d:#1e4a2e;--rose:#b85a6e;--rose-l:#fcedf1;--rose-m:#e8a8b8;--gold:#c49a35;--gold-l:#fdf4e0;--gold-m:#e8ca85;--ink:#1a1d24;--muted:#6c6f7c;--bg:#f8f6f1;--card:#fff;--border:#e4e0d6;--shadow:0 10px 30px rgba(0,0,0,.08);--r:18px}
+*{box-sizing:border-box;margin:0;padding:0} html{scroll-behavior:smooth}
+body{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 70% 50% at 12% 12%, #e6f2eb66 0%, transparent 55%),radial-gradient(ellipse 60% 40% at 88% 88%, #fcedf166 0%, transparent 55%),radial-gradient(ellipse 55% 45% at 75% 10%, #fdf4e055 0%, transparent 55%)}
+.wrap{max-width:980px;margin:0 auto;padding:16px 14px 70px;position:relative;z-index:1}
+.startScreen{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e6f2eb,#fdf4e0);overflow:auto;padding:18px}
+.startCard{background:#fff;border:1.5px solid var(--border);border-radius:22px;box-shadow:0 18px 60px rgba(0,0,0,.12);padding:22px 18px;max-width:880px;width:100%;text-align:center;max-height:96vh;overflow:auto}
+.badge{display:inline-flex;gap:8px;align-items:center;background:var(--sage);color:#fff;padding:6px 14px;border-radius:999px;font-size:.72rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.startTitle{font-family:'Playfair Display',serif;font-size:2.0rem;margin:12px 0 8px}.startTitle em{color:var(--sage);font-style:italic}
+.dialog{margin:12px auto 0;max-width:760px;text-align:left;border:1.5px solid var(--border);border-radius:16px;padding:12px;background:var(--sage-l)}
+.dialogHead{display:flex;gap:10px;align-items:center}
+.avatar{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:#fff;border:1.5px solid var(--border);font-size:1.5rem}
+.dialogName{font-weight:900;color:var(--sage-d)}
+.dialogText{margin-top:8px;color:var(--ink);line-height:1.45}
+.startSub{color:var(--muted);line-height:1.55;margin:10px auto 0;max-width:760px;font-size:.92rem}
+.sessionsBox{margin:14px auto 0;max-width:760px;text-align:left;border:1.5px solid var(--gold-m);border-radius:16px;background:var(--gold-l);padding:12px}
+.sessionsBox h3{font-family:'Playfair Display',serif;font-size:1.05rem;color:#6b520e;margin-bottom:6px}
+.sessionsBox ul{list-style:none;padding:0;margin:0}
+.sessionsBox li{padding:4px 0;font-size:.92rem;line-height:1.4}
+.sessionsBox b{color:#6b520e}
+.rubricBox{margin:10px auto 0;max-width:760px;text-align:left;border:1.5px solid var(--sage-m);border-radius:16px;background:var(--sage-l);padding:12px}
+.rubricBox h3{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--sage-d);margin-bottom:6px}
+.rubricGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-top:6px}
+.rubricCell{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:8px 10px;font-size:.86rem}
+.rubricCell b{display:block;color:var(--sage-d);margin-bottom:4px}
+.bigRow{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.bigBtn{border:0;border-radius:14px;padding:12px 18px;font-weight:900;cursor:pointer}
+.bigPrimary{background:var(--sage);color:#fff;box-shadow:0 12px 22px rgba(61,122,82,.22)}
+.bigGhost{background:#fff;border:1.5px solid var(--border);color:var(--muted)}
+.bigBtn:active{transform:scale(.98)}
+.hero{padding:18px 16px 14px;border-radius:18px;background:linear-gradient(135deg,#e6f2eb,#fdf4e0);box-shadow:var(--shadow);text-align:center}
+.hero h1{font-family:'Playfair Display',serif;font-size:2.0rem;margin:10px 0 0}.hero h1 em{color:var(--sage);font-style:italic}
+.small{font-size:.84rem;color:var(--muted)}
+.sessionBadge{display:inline-flex;align-items:center;gap:6px;background:var(--gold-l);border:1.5px solid var(--gold-m);color:#6b520e;border-radius:999px;padding:4px 10px;font-size:.74rem;font-weight:900;margin-top:6px}
+.nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:12px 0 18px}
+.nav a{text-decoration:none;color:var(--muted);background:#fff;border:1.5px solid var(--border);padding:7px 12px;border-radius:999px;font-weight:900;font-size:.78rem;transition:.18s;display:inline-flex;align-items:center;gap:8px}
+.nav a:hover,.nav a.active{background:var(--sage);border-color:var(--sage);color:#fff}
+.nav a.locked{opacity:.55;filter:grayscale(1);cursor:not-allowed;pointer-events:none}
+.lockDot{display:inline-flex;width:18px;height:18px;border-radius:50%;align-items:center;justify-content:center;background:var(--gold-l);border:1.5px solid var(--gold-m);font-size:.78rem}
+.card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow);padding:20px;margin:16px 0;position:relative}
+.sec-badge{font-size:.68rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--sage);margin-bottom:4px}
+.sec-title{font-family:'Playfair Display',serif;font-size:1.35rem;margin-bottom:6px}
+.mission{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-top:10px}
+.missionBox{flex:1;min-width:280px;border:1.5px solid var(--border);border-radius:16px;background:#fff;padding:12px}
+.missionTitle{font-weight:900;color:var(--sage-d)}
+.missionLine{margin-top:6px;color:var(--muted);font-size:.88rem;line-height:1.35}
+.meter{margin-top:10px;height:10px;background:var(--border);border-radius:999px;overflow:hidden}
+.meterFill{height:100%;width:0%;background:linear-gradient(90deg,var(--sage),var(--gold));transition:width .35s ease}
+.btnRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center}
+.btn{border:0;border-radius:11px;padding:10px 16px;font-weight:900;cursor:pointer}
+.primary{background:var(--sage);color:#fff}
+.ghost{background:transparent;border:1.5px solid var(--border);color:var(--muted)}
+.ghost:hover{border-color:var(--sage);color:var(--sage)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.cardlet{border:1.5px solid var(--border);border-radius:12px;padding:12px;min-height:108px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.05);position:relative}
+.cardlet.heard{border-color:var(--sage-m);background:#f4faf6}
+.cardlet.heard::after{content:'✓';position:absolute;top:6px;right:8px;color:var(--sage);font-weight:900}
+.cardletHead{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.tag{font-size:.7rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.tag.core{color:var(--sage)}
+.tag.bonus{color:var(--gold)}
+.emoji{font-size:2.1rem;line-height:1;margin-top:6px}
+.ca{margin-top:6px;color:var(--muted);font-weight:900}
+.fr{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:800;margin-top:6px;color:var(--sage-d)}
+.ttsBtn{background:var(--sage-l);border:1.5px solid var(--sage-m);color:var(--sage);border-radius:10px;padding:4px 8px;font-weight:900;font-size:.82rem;cursor:pointer}
+.mini{margin-top:12px;border:1.5px dashed var(--border);border-radius:14px;padding:12px;background:#fff}
+.choiceRow{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center}
+.chip{border:1.5px solid var(--border);background:#fff;border-radius:999px;padding:7px 12px;font-weight:900;font-size:.82rem;color:var(--muted);cursor:pointer}
+.chip.active,.chip:hover{background:var(--sage);border-color:var(--sage);color:#fff}
+.chip.locked{opacity:.6;filter:grayscale(1)}
+.stepTitle{display:flex;align-items:center;gap:10px;margin-top:10px;font-weight:900;color:var(--sage-d)}
+.stepNum{width:26px;height:26px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;background:var(--sage-l);border:1.5px solid var(--sage-m);color:var(--sage-d);font-weight:900}
+.bigChip{border:1.5px solid var(--border);background:#fff;border-radius:999px;padding:9px 14px;font-weight:900;font-size:.92rem;color:var(--muted);cursor:pointer}
+.bigChip.active,.bigChip:hover{background:var(--sage);border-color:var(--sage);color:#fff}
+.lineStack{margin-top:10px;display:flex;flex-direction:column;gap:8px}
+.line{opacity:0;transform:translateY(6px);transition:opacity .28s ease, transform .28s ease;background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:10px 12px}
+.line.show{opacity:1;transform:translateY(0)}
+.hintBox{margin-top:10px;border:1.5px solid var(--gold-m);background:var(--gold-l);border-radius:14px;padding:10px 12px;font-weight:900;color:#6b520e}
+.infoBox{margin-top:10px;border:1.5px solid var(--sage-m);background:var(--sage-l);border-radius:14px;padding:10px 12px;color:var(--sage-d);font-size:.9rem;line-height:1.45}
+.infoBox b{color:var(--sage-d)}
+.timer{margin-top:10px;border:1.5px solid var(--border);border-radius:14px;padding:10px 12px;background:#fff}
+.timerBar{height:10px;background:var(--border);border-radius:999px;overflow:hidden;margin-top:8px}
+.timerFill{height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--sage));transition:width .25s ease}
+.coach{margin-top:10px;border-radius:14px;padding:10px 12px;border:1.5px solid var(--border);background:#fff;font-size:.92rem;line-height:1.5}
+.coach b{color:var(--sage-d)}
+.fb{display:none;margin-top:10px;border-radius:12px;padding:10px 12px;font-weight:900;font-size:.9rem}
+.fb.show{display:block}.fb.ok{background:var(--sage-l);border:1.5px solid var(--sage-m);color:var(--sage-d)}.fb.bad{background:var(--rose-l);border:1.5px solid var(--rose-m);color:#7a1c30}
+.lockedSection{opacity:.65;filter:grayscale(1)}
+.lockOverlay{position:absolute;inset:0;display:none;align-items:center;justify-content:center;padding:18px;border-radius:18px;background:rgba(255,255,255,.78);backdrop-filter:blur(2px);z-index:10}
+.lockOverlay .box{max-width:560px;border:1.5px solid var(--border);border-radius:16px;background:#fff;padding:14px;box-shadow:var(--shadow)}
+.lockedSection .lockBlock{pointer-events:none}
+.qChoices{display:flex;flex-direction:column;gap:9px;margin-top:10px}
+.qBtn{border:1.5px solid var(--border);border-radius:14px;background:#fff;padding:11px 12px;font-weight:900;cursor:pointer;text-align:left}
+.qBtn.correct{background:#d9f5e3;border-color:var(--sage)}
+.qBtn.wrong{background:#fde3e6;border-color:var(--rose)}
+.qBtn.revealed{background:#d9f5e3;border-color:var(--sage);outline:2px dashed var(--sage)}
+.modal{display:none;position:fixed;inset:0;z-index:100000;background:rgba(0,0,0,.35);align-items:center;justify-content:center;padding:18px}
+.modalCard{max-width:820px;width:100%;background:#fff;border:1.5px solid var(--border);border-radius:22px;box-shadow:0 18px 70px rgba(0,0,0,.2);padding:18px;max-height:90vh;overflow:auto}
+.modalTitle{font-family:'Playfair Display',serif;font-size:1.6rem}
+.klist{margin-top:10px;display:grid;gap:10px}
+.kitem{border:1.5px solid var(--border);border-radius:14px;padding:10px 12px;background:#fff}
+.kitem b{color:var(--sage-d)}
+.autosaveDot{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;color:var(--sage);font-weight:900}
+.autosaveDot::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--sage)}
+#toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:rgba(26,29,36,.92);color:#fff;padding:10px 14px;border-radius:999px;font-weight:900;font-size:.85rem;z-index:10001;opacity:0;transition:opacity .2s ease, transform .2s ease}
+#printSheet{display:none}
+.posTable{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.posCell{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:8px;text-align:center;font-size:.88rem}
+.posCell b{display:block;color:var(--sage-d);font-size:1.1rem;font-family:'Playfair Display',serif}
+.posDrag{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.posWord{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:6px 10px;font-weight:900;cursor:pointer;font-size:.9rem}
+.posWord.right{background:#d9f5e3;border-color:var(--sage)}
+.posWord.bad{background:#fde3e6;border-color:var(--rose)}
+@media print{.startScreen,.nav,#toast,.modal,.btn,.bigRow,.ttsBtn,.bigBtn{display:none!important} body{background:#fff} .wrap,.card{box-shadow:none;border:none} .wrap>*{display:none!important} #printSheet{display:block!important}}
+</style>
+</head>
+<body>
+
+<!-- ===================== PANTALLA INICIAL ===================== -->
+<div class="startScreen" id="startScreen">
+<div class="startCard">
+<div class="badge">🇫🇷 A1 · AULA PRO v2</div>
+<div class="startTitle">Missió: <em>L'illa del tresor</em> 🏝️</div>
+
+<div class="dialog">
+<div class="dialogHead">
+<div class="avatar">👧</div>
+<div><div class="dialogName">Zoé (13 ans)</div><div class="small">Je suis sur une île mystérieuse…</div></div>
+</div>
+<div class="dialogText">
+<div><b>Bonjour !</b> Je m'appelle Zoé. J'ai <b>13 ans</b>.</div>
+<div>Je veux trouver le <b>trésor</b>, mais je ne peux pas seule.</div>
+<div><b>Aide-moi !</b> Tria un ajudant de la teva <b>famille</b>, aprèn el <b>corps</b> i desbloqueja un <b>pouvoir</b>.</div>
+</div>
+</div>
+
+<div class="sessionsBox">
+<h3>🗓️ Pla de treball (2-3 sessions)</h3>
+<ul>
+<li><b>Sessió 1</b> · Famille (vocabulari + possessius + frase guiada) + començar Corps</li>
+<li><b>Sessió 2</b> · Corps complet (vocabulari + vídeo 60s + quiz)</li>
+<li><b>Sessió 3</b> · Description (text final) + revisar + <b>Generar PDF</b> per al Classroom</li>
+</ul>
+<div class="small" style="margin-top:6px"><span class="autosaveDot">El progrés es desa automàticament al teu navegador</span></div>
+</div>
+
+<div class="rubricBox">
+<h3>🏅 Com s'avalua</h3>
+<div class="rubricGrid">
+<div class="rubricCell"><b>🥉 Bronze · 7/10</b>25+ paraules en francès, frase de família correcta.</div>
+<div class="rubricCell"><b>🥈 Argent · 8,5/10</b>35+ paraules + 1 expressió del cos (ex: <i>deux mains</i>).</div>
+<div class="rubricCell"><b>🏆 Or · 10/10</b>45+ paraules + 2 expressions del cos + poder integrat.</div>
+</div>
+</div>
+
+<div class="startSub">Al final: posa el teu nom → <b>Generar PDF</b> → puja'l al Classroom.</div>
+
+<div class="bigRow">
+<button class="bigBtn bigPrimary" onclick="document.getElementById('startScreen').style.display='none';">🚀 Comença la missió</button>
+<button class="bigBtn bigGhost" id="howBtn" type="button">Ajuda</button>
+</div>
+</div>
+</div>
+
+<!-- ===================== CONTINGUT ===================== -->
+<div class="wrap">
+
+<div class="hero">
+<div class="badge">🗺️ Missió Zoé</div>
+<h1><em>Famille</em> → <em>Corps</em> → <em>Trésor</em></h1>
+<div class="small" style="margin-top:8px">Progrés: <b id="gpPct">0%</b> · <span class="autosaveDot" id="saveDot">Desat automàtic</span></div>
+<div class="sessionBadge" id="sessionBadge">🗓️ Sessió 1 · Famille</div>
+</div>
+
+<!-- Estat -->
+<section class="card" id="sec-mission">
+<div class="sec-badge">Progrés</div>
+<div class="sec-title">Objectiu</div>
+<div class="mission">
+<div class="missionBox">
+<div class="missionTitle">✅ Estat</div>
+<div class="missionLine" id="missionLine">0/3</div>
+<div class="meter"><div class="meterFill" id="missionFill"></div></div>
+</div>
+<div class="missionBox"><div class="missionTitle">📌 Pista</div><div class="missionLine" id="zoeMsg">Comença per Famille.</div></div>
+</div>
+<div class="btnRow">
+<button class="btn ghost" id="showRubric" type="button">🏅 Veure rúbrica</button>
+<button class="btn ghost" id="showPlan" type="button">🗓️ Veure pla de sessions</button>
+</div>
+</section>
+
+<!-- Nav -->
+<nav class="nav">
+<a href="#sec-famille" id="tab-famille"><span class="lockDot">0</span> Famille</a>
+<a href="#sec-corps" id="tab-corps" class="locked"><span class="lockDot">🔒</span> Corps</a>
+<a href="#sec-description" id="tab-desc" class="locked"><span class="lockDot">🔒</span> Description</a>
+</nav>
+
+<!-- ===================== FAMILLE ===================== -->
+<section class="card" id="sec-famille">
+<div class="sec-badge">1/3 · Sessió 1</div>
+<div class="sec-title">La famille</div>
+
+<div class="infoBox">
+<b>📚 Possessius en francès</b><br>
+En francès, els possessius canvien segons el gènere de la paraula que segueix (no segons qui parla, com en català).
+<div class="posTable">
+<div class="posCell"><b>mon</b>masculí singular<br><span class="small">mon père, mon frère</span></div>
+<div class="posCell"><b>ma</b>femení singular<br><span class="small">ma mère, ma sœur</span></div>
+<div class="posCell"><b>mes</b>plural<br><span class="small">mes parents, mes frères</span></div>
+</div>
+<div class="small" style="margin-top:8px;color:var(--muted)">⚠️ Excepció: davant de vocal o "h" muda fem servir <b>mon</b> (ex: <i>mon amie</i>).</div>
+</div>
+
+<div class="mini">
+<div class="stepTitle"><span class="stepNum">0</span> Mini-repte de possessius</div>
+<div class="small" style="margin-top:6px;color:var(--muted)">Clica les paraules que van amb <b>"ma"</b>:</div>
+<div class="posDrag" id="posDrag"></div>
+<div class="fb" id="posFb"></div>
+</div>
+
+<div class="stepTitle" style="margin-top:14px"><span class="stepNum">A</span> Vocabulari (clica 🔊 per escoltar)</div>
+<div class="small" style="color:var(--muted);margin-top:4px">⭐ = bàsics · ☆ = bonus</div>
+<div class="grid" id="famGrid" style="margin-top:12px"></div>
+
+<div class="mini">
+<div class="stepTitle"><span class="stepNum">1</span> Quants sou a casa?</div>
+<div class="choiceRow" id="sizeChoices"></div>
+<div class="stepTitle"><span class="stepNum">2</span> Tens germans?</div>
+<div class="choiceRow" id="sibChoices"></div>
+<div class="stepTitle"><span class="stepNum">3</span> Tria l'ajudant per a la Zoé</div>
+<div class="choiceRow" id="helperChoices"></div>
+<div class="lineStack" id="famLines"></div>
+<div class="btnRow">
+<button class="btn ghost" id="famSpeak">🔊 Escoltar tot</button>
+<button class="btn ghost" id="famCopy">📋 Copiar</button>
+<button class="btn primary" id="famDone">Fet → Corps</button>
+</div>
+<div class="fb" id="famFb"></div>
+</div>
+</section>
+
+<!-- ===================== CORPS ===================== -->
+<section class="card" id="sec-corps">
+<div class="lockOverlay" id="overlayCorps"><div class="box"><div style="font-weight:900">🔒 Bloquejat</div><div class="small" style="margin-top:6px">Acaba abans la part de Famille.</div></div></div>
+<div class="lockBlock">
+<div class="sec-badge">2/3 · Sessió 1-2</div>
+<div class="sec-title">Les parties du corps</div>
+
+<div class="mission">
+<div class="missionBox"><div class="missionTitle">🎯 Reptes</div><div class="missionLine" id="corpsLine">0/3</div><div class="meter"><div class="meterFill" id="corpsFill"></div></div></div>
+<div class="missionBox"><div class="missionTitle">🔓 Poder</div><div class="missionLine" id="powerStatus">Mira el vídeo i respon la pregunta per desbloquejar el poder.</div></div>
+</div>
+
+<!-- Repte A: vocabulari -->
+<div class="mini" style="margin-top:12px">
+<div class="small"><strong>Repte A</strong> · Vocabulari (CA + FR + àudio) · <b id="vocabCount">0</b>/10</div>
+<div class="small" style="color:var(--muted);margin-top:4px">Clica 🔊 a 10 paraules diferents per superar el repte.</div>
+<div class="grid" id="bodyGrid" style="margin-top:12px"></div>
+<div class="fb" id="vocabFb"></div>
+</div>
+
+<!-- Repte B: vídeo + mini-validació -->
+<div class="mini" id="videoBox">
+<div class="small"><strong>Repte B</strong> · Vídeo de moviment</div>
+<div class="small" style="margin-top:6px;color:var(--muted)">Mira el vídeo i <b>mou les parts del cos</b> que veuràs: tête · bras · mains · jambes · pieds. Després contesta una pregunta.</div>
+<div style="margin-top:10px;border-radius:14px;overflow:hidden;border:1.5px solid var(--border)">
+<iframe id="danceVid" width="100%" height="315" src="https://www.youtube.com/embed/bKjtZI-KKz4?rel=0&modestbranding=1" title="Les parties du corps" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<div class="timer">
+<div>⏱️ Mira'l com a mínim <b id="timerLeft">60</b> s…</div>
+<div class="timerBar"><div class="timerFill" id="timerFill"></div></div>
+<div class="small" style="margin-top:6px;color:var(--muted)">Quan arribi a 0s → contesta la pregunta de baix.</div>
+</div>
+
+<!-- Mini-validació post-vídeo -->
+<div id="videoQuizBox" style="display:none;margin-top:12px;border:1.5px solid var(--gold-m);background:var(--gold-l);border-radius:14px;padding:12px">
+<div style="font-weight:900;color:#6b520e">🎯 Pregunta del vídeo</div>
+<div class="small" id="videoQuizQ" style="margin-top:4px"></div>
+<div class="qChoices" id="videoQuizChoices"></div>
+<div class="fb" id="videoQuizFb"></div>
+</div>
+<div class="fb" id="videoFb"></div>
+</div>
+
+<!-- Repte C: quiz -->
+<div class="mini">
+<div class="small"><strong>Repte C</strong> · Quiz (necessites 3/5)</div>
+<div class="small" id="quizMeta" style="margin-top:6px;font-weight:900;color:var(--sage)">1/5</div>
+<div class="sec-title" style="font-size:1.1rem;margin-top:10px" id="quizQ"></div>
+<div class="qChoices" id="quizChoices"></div>
+<div class="btnRow"><button class="btn primary" id="quizNext" style="display:none">Següent</button><button class="btn ghost" id="quizRestart" style="display:none">↺ Tornar a fer</button></div>
+<div class="fb" id="quizFb"></div>
+</div>
+
+<div class="btnRow"><button class="btn primary" id="corpsDone" style="display:none">Fet → Description</button></div>
+</div>
+</section>
+
+<!-- ===================== DESCRIPTION ===================== -->
+<section class="card" id="sec-description">
+<div class="lockOverlay" id="overlayDesc"><div class="box"><div style="font-weight:900">🔒 Bloquejat</div><div class="small" style="margin-top:6px">Acaba abans els reptes de Corps.</div></div></div>
+<div class="lockBlock">
+<div class="sec-badge">3/3 · Sessió 3</div>
+<div class="sec-title">Description finale</div>
+
+<div class="infoBox">
+<b>🎯 Què has d'escriure</b><br>
+Un text en francès amb: (1) la teva família, (2) l'ajudant que has triat, (3) com és físicament (cabells, ulls), (4) el seu superpoder, i (5) com ajuda la Zoé. Mínim <b>25 paraules</b> (Bronze) — millor <b>45</b> per Or.
+</div>
+
+<div class="mini">
+<div class="choiceRow">
+<span class="small" style="font-weight:900">📝 Nom</span>
+<input id="studentName" type="text" placeholder="Nom i cognom" style="flex:1;min-width:180px;padding:10px 12px;border-radius:12px;border:1.5px solid var(--border);font-weight:900"/>
+</div>
+<div class="small" style="margin-top:8px;color:var(--muted)">Nom del fitxer PDF: <b id="fileNameHint">Nom_Cognom_Zoe.pdf</b> <button class="btn ghost" id="copyFileName" type="button">📋 Copiar nom</button></div>
+<div class="fb" id="nameFb"></div>
+</div>
+
+<div class="mini">
+<div class="small" style="font-weight:900">👤 Aspecte de l'ajudant: <b id="helperLabel">—</b> · pronom <b id="helperPron">—</b></div>
+<div class="grid" id="avatarGrid" style="margin-top:10px"></div>
+<div class="choiceRow" style="margin-top:8px">
+<span class="small" style="font-weight:900">Cheveux</span>
+<select id="hair"><option value="blonds">blonds (rossos)</option><option value="bruns">bruns (castanys)</option><option value="noirs">noirs (negres)</option><option value="roux">roux (pèl-roigs)</option></select>
+<span class="small" style="font-weight:900">Yeux</span>
+<select id="eyes"><option value="bleus">bleus (blaus)</option><option value="verts">verts (verds)</option><option value="marron">marron (marrons)</option><option value="noirs">noirs (negres)</option></select>
+</div>
+</div>
+
+<div class="mini">
+<div class="small" style="font-weight:900">⚡ Superpoder de l'ajudant</div>
+<div class="choiceRow" id="powerChoices"></div>
+<div class="hintBox" id="powerHint">Fes el vídeo per desbloquejar el poder.</div>
+</div>
+
+<div class="mini">
+<div class="btnRow">
+<button class="btn ghost" id="genFinal">✨ Generar text base</button>
+<button class="btn ghost" id="addBody">+ Frase de cos</button>
+<button class="btn primary" id="btnToOr">⬆️ Afegir per arribar a OR</button>
+<button class="btn ghost" id="speakFinal">🔊 Escoltar el text</button>
+</div>
+<textarea id="finalText" rows="9" placeholder="Escriu o genera el text aquí en francès…" style="width:100%;margin-top:10px;padding:10px 12px;border-radius:12px;border:1.5px solid var(--border);font-weight:700;font-family:inherit;line-height:1.5"></textarea>
+<div class="small" style="margin-top:8px">📊 <strong id="wc">0</strong> paraules</div>
+<div class="coach" id="liveCoach">🧭 Escriu el text i veuràs pistes en directe.</div>
+<div class="fb" id="finalFb"></div>
+</div>
+
+<div class="mini">
+<div class="btnRow">
+<button class="btn primary" id="finalSubmit">🏁 Veure resultat i generar PDF</button>
+<button class="btn ghost" id="resetAll">↺ Reiniciar tot</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+
+<!-- ===================== MODALS ===================== -->
+<div class="modal" id="reward"><div class="modalCard">
+<div class="modalTitle" id="rewardTitle">Resultat</div>
+<div class="small" id="rewardLevel" style="margin-top:6px">—</div>
+<div class="klist">
+<div class="kitem"><b>Següent pas:</b> Prem "Generar PDF" i el guardes a l'Escriptori. Després el puges al Classroom.</div>
+<div class="kitem"><b>Consell:</b> Si vols pujar de nivell, prem "Afegir per arribar a OR".</div>
+</div>
+<div class="btnRow" style="margin-top:12px">
+<button class="btn primary" id="rewardPrint">🖨️ Generar PDF</button>
+<button class="btn ghost" id="rewardClose">Tancar</button>
+</div>
+</div></div>
+
+<div class="modal" id="classroomModal"><div class="modalCard">
+<div class="modalTitle">📤 Com entregar al Classroom</div>
+<div class="klist">
+<div class="kitem"><b>1)</b> En aquesta finestra que s'obrirà, tria <b>"Desa com a PDF"</b> (Destination → Save as PDF).</div>
+<div class="kitem"><b>2)</b> Posa-li aquest nom: <b id="fileNameHint2">Nom_Cognom_Zoe.pdf</b> <button class="btn ghost" id="copyFileName2" type="button" style="padding:4px 10px;font-size:.8rem;margin-left:6px">📋</button></div>
+<div class="kitem"><b>3)</b> Desa'l a la teva carpeta o a l'Escriptori.</div>
+<div class="kitem"><b>4)</b> Obre <b>Google Classroom</b> → la tasca de Zoé → <b>Adjuntar</b> → puja el PDF → <b>Entregar</b>.</div>
+</div>
+<div class="btnRow" style="margin-top:12px">
+<button class="btn primary" id="openPrintFromModal">🖨️ Obrir generador PDF</button>
+<button class="btn ghost" id="closeClassroom">Tancar</button>
+</div>
+</div></div>
+
+<div class="modal" id="rubricModal"><div class="modalCard">
+<div class="modalTitle">🏅 Rúbrica</div>
+<div class="klist">
+<div class="kitem"><b>🥉 Bronze (7/10)</b> · 25+ paraules. Frase de família correcta. Pots començar a entregar.</div>
+<div class="kitem"><b>🥈 Argent (8,5/10)</b> · 35+ paraules + <b>1</b> expressió del cos (ex: <i>Il a deux mains</i>).</div>
+<div class="kitem"><b>🏆 Or (10/10)</b> · 45+ paraules + <b>2</b> expressions del cos + <b>poder integrat</b> (ex: <i>Grâce à ses mains magiques…</i>).</div>
+<div class="kitem"><b>📌 Es valora també:</b> ús correcte de <b>mon/ma/mes</b>, ortografia bàsica i que el text parli de la família + ajudant + Zoé.</div>
+</div>
+<div class="btnRow" style="margin-top:12px"><button class="btn primary" id="closeRubric">D'acord</button></div>
+</div></div>
+
+<div class="modal" id="planModal"><div class="modalCard">
+<div class="modalTitle">🗓️ Pla de sessions</div>
+<div class="klist">
+<div class="kitem"><b>Sessió 1 · Famille (~50 min)</b><br>Possessius (mon/ma/mes), vocabulari, tria d'ajudant i frase guiada. Començar el vocabulari de Corps si dona temps.</div>
+<div class="kitem"><b>Sessió 2 · Corps (~50 min)</b><br>Vocabulari complet, vídeo de moviment (60s) + pregunta, quiz de 5 preguntes.</div>
+<div class="kitem"><b>Sessió 3 · Description i entrega (~50 min)</b><br>Generar text base, polir-lo fins a Or si és possible, generar PDF i pujar-lo al Classroom.</div>
+<div class="kitem"><b>💾 Autodesat:</b> tot el progrés es guarda al navegador. Si tanques i tornes a obrir el fitxer al mateix ordinador i navegador, continues on havies quedat.</div>
+</div>
+<div class="btnRow" style="margin-top:12px"><button class="btn primary" id="closePlan">D'acord</button></div>
+</div></div>
+
+<div id="toast" aria-live="polite"></div>
+
+<!-- ===================== FULL D'IMPRESSIÓ (PDF) ===================== -->
+<section id="printSheet">
+<div style="font-family:'DM Sans',Arial,sans-serif;padding:24px;color:#1a1d24">
+<div style="display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #3d7a52;padding-bottom:8px">
+<div style="font-size:20px;font-weight:900;color:#3d7a52">Missió Zoé — L'illa del tresor 🏝️</div>
+<div style="font-size:12px;color:#6c6f7c">Français A1</div>
+</div>
+<div style="margin-top:12px;display:flex;gap:18px;flex-wrap:wrap">
+<div>👤 <b>Nom:</b> <span id="psName"></span></div>
+<div>🏅 <b>Nivell:</b> <span id="psLevel"></span></div>
+<div>📊 <b>Nota:</b> <span id="psGrade"></span></div>
+<div>📅 <b>Data:</b> <span id="psDate"></span></div>
+</div>
+<hr style="margin:14px 0;border:none;border-top:1px solid #e4e0d6"/>
+<div style="font-weight:900;margin-bottom:6px;color:#3d7a52">Famille (frase guiada)</div>
+<div id="psFamille" style="white-space:pre-wrap;line-height:1.5;padding:8px;background:#f8f6f1;border-radius:8px"></div>
+<div style="font-weight:900;margin:14px 0 6px;color:#3d7a52">Description finale (FR)</div>
+<div id="psText" style="white-space:pre-wrap;line-height:1.5;padding:8px;background:#f8f6f1;border-radius:8px"></div>
+<div style="font-weight:900;margin:14px 0 6px;color:#3d7a52">Resum de la missió</div>
+<div style="font-size:13px;line-height:1.5" id="psSummary"></div>
+</div>
+</section>
+
+<script>
+// ===================== DADES =====================
+const FAMILY=[
+{key:"pere",fr:"mon père",ca:"el pare",emoji:"👨",gender:"m",core:true},
+{key:"mere",fr:"ma mère",ca:"la mare",emoji:"👩",gender:"f",core:true},
+{key:"frere",fr:"mon frère",ca:"el germà",emoji:"👦",gender:"m",core:true},
+{key:"soeur",fr:"ma sœur",ca:"la germana",emoji:"👧",gender:"f",core:true},
+{key:"gdp",fr:"mon grand-père",ca:"l'avi",emoji:"👴",gender:"m",core:true},
+{key:"gdm",fr:"ma grand-mère",ca:"l'àvia",emoji:"👵",gender:"f",core:true},
+{key:"oncle",fr:"mon oncle",ca:"el tiet",emoji:"🧔",gender:"m",core:false},
+{key:"tante",fr:"ma tante",ca:"la tieta",emoji:"👩‍🦰",gender:"f",core:false}
+];
+const BODY=[
+{fr:"la tête",ca:"el cap",emoji:"🙂"},
+{fr:"les cheveux",ca:"els cabells",emoji:"💇"},
+{fr:"les yeux",ca:"els ulls",emoji:"👀"},
+{fr:"le nez",ca:"el nas",emoji:"👃"},
+{fr:"la bouche",ca:"la boca",emoji:"👄"},
+{fr:"les oreilles",ca:"les orelles",emoji:"👂"},
+{fr:"le cou",ca:"el coll",emoji:"🧣"},
+{fr:"les épaules",ca:"les espatlles",emoji:"🤷"},
+{fr:"le bras",ca:"el braç",emoji:"💪"},
+{fr:"les mains",ca:"les mans",emoji:"🤲"},
+{fr:"les doigts",ca:"els dits",emoji:"🖐️"},
+{fr:"le ventre",ca:"la panxa",emoji:"🍐"},
+{fr:"les jambes",ca:"les cames",emoji:"🦵"},
+{fr:"le genou",ca:"el genoll",emoji:"🦿"},
+{fr:"les pieds",ca:"els peus",emoji:"🦶"}
+];
+const POWERS=[
+{key:"mains_magiques",label:"✨ mains magiques",part:"mains",adj:"magiques",m:"Il a deux mains magiques.",f:"Elle a deux mains magiques."},
+{key:"pieds_magiques",label:"✨ pieds magiques",part:"pieds",adj:"magiques",m:"Il a deux pieds magiques.",f:"Elle a deux pieds magiques."},
+{key:"yeux_speciaux",label:"👀 yeux spéciaux",part:"yeux",adj:"spéciaux",m:"Il a des yeux spéciaux.",f:"Elle a des yeux spéciaux."},
+{key:"jambes_rapides",label:"⚡ jambes rapides",part:"jambes",adj:"rapides",m:"Il a des jambes très rapides.",f:"Elle a des jambes très rapides."},
+{key:"bras_forts",label:"💪 bras forts",part:"bras",adj:"forts",m:"Il a des bras très forts.",f:"Elle a des bras très forts."}
+];
+// Mini-repte de possessius
+const POS_WORDS=[
+{w:"père",g:"m"},{w:"mère",g:"f"},{w:"sœur",g:"f"},{w:"frère",g:"m"},
+{w:"tante",g:"f"},{w:"oncle",g:"m"},{w:"grand-mère",g:"f"},{w:"grand-père",g:"m"}
+];
+const VIDEO_SECONDS=60;
+const STORAGE_KEY='zoe_aula_pro_v2';
+
+// ===================== ESTAT =====================
+const state={
+done:{famille:false,corps:false,desc:false},
+famille:{size:4,sib:'frere',helperKey:'frere',phrase:'',posDone:false},
+corps:{vocabHeard:[],vocabDone:false,videoTimerDone:false,videoQuizDone:false,videoDone:false,quizIdx:0,quizCorrect:0,quizDone:false,quizData:null,videoQuizData:null},
+desc:{avatar:'🕵️',hair:'bruns',eyes:'bleus',powerKey:'mains_magiques',text:''},
+student:{name:''}
+};
+function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch(e){} updateHUD(); updateLocks(); applySectionLocks(); flashSave();}
+function load(){try{const raw=localStorage.getItem(STORAGE_KEY); if(!raw) return; const s=JSON.parse(raw);
+Object.assign(state.done,s.done||{});Object.assign(state.famille,s.famille||{});Object.assign(state.corps,s.corps||{});Object.assign(state.desc,s.desc||{});Object.assign(state.student,s.student||{});
+}catch(e){}}
+function resetAll(){if(confirm('Vols esborrar tot el progrés i tornar a començar?')){localStorage.removeItem(STORAGE_KEY); location.reload();}}
+
+// ===================== UI HELPERS =====================
+function toast(msg){const el=document.getElementById('toast'); el.textContent=msg; el.style.opacity='1'; el.style.transform='translateX(-50%) translateY(-2px)'; clearTimeout(window.__toast); window.__toast=setTimeout(()=>{el.style.opacity='0'; el.style.transform='translateX(-50%) translateY(6px)';},1400);}
+function setFb(id,ok,msg){const el=document.getElementById(id); if(!el) return; el.className='fb show '+(ok?'ok':'bad'); el.innerHTML=msg;}
+function flashSave(){const d=document.getElementById('saveDot'); if(!d) return; d.style.opacity='0.4'; setTimeout(()=>{d.style.opacity='1';},250);}
+function speakFR(text){ if(!('speechSynthesis' in window)) return; window.speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); u.lang='fr-FR'; u.rate=0.9; window.speechSynthesis.speak(u); }
+function shuffle(a){const x=[...a]; for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1)); [x[i],x[j]]=[x[j],x[i]];} return x;}
+async function copyText(text){
+try{ if(navigator.clipboard && window.isSecureContext){ await navigator.clipboard.writeText(text); return true; } }catch(e){}
+try{ const ta=document.createElement('textarea'); ta.value=text; ta.setAttribute('readonly',''); ta.style.position='fixed'; ta.style.top='-1000px'; ta.style.left='-1000px'; document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0, ta.value.length); const ok=document.execCommand('copy'); document.body.removeChild(ta); return ok; }catch(e){ return false; }
+}
+
+// ===================== HUD =====================
+function updateHUD(){
+const doneCount=['famille','corps','desc'].filter(k=>state.done[k]).length;
+document.getElementById('gpPct').textContent=Math.round(doneCount/3*100)+'%';
+document.getElementById('missionLine').textContent=`${doneCount}/3 fases completades`;
+document.getElementById('missionFill').style.width=Math.round(doneCount/3*100)+'%';
+const msg=document.getElementById('zoeMsg');
+const sb=document.getElementById('sessionBadge');
+if(!state.done.famille){msg.textContent='Comença per Famille.'; sb.textContent='🗓️ Sessió 1 · Famille';}
+else if(!state.done.corps){msg.textContent='Ara Corps: aprèn el cos.'; sb.textContent='🗓️ Sessió 2 · Corps';}
+else if(!state.done.desc){msg.textContent='Ara Description: redacta el text final.'; sb.textContent='🗓️ Sessió 3 · Description';}
+else {msg.textContent='Missió completada! 🏝️'; sb.textContent='🏆 Tot completat';}
+}
+function updateLocks(){
+const tabCorps=document.getElementById('tab-corps');
+const tabDesc=document.getElementById('tab-desc');
+if(state.done.famille){tabCorps.classList.remove('locked'); tabCorps.querySelector('.lockDot').textContent='1';}
+else{tabCorps.classList.add('locked'); tabCorps.querySelector('.lockDot').textContent='🔒';}
+if(state.done.corps){tabDesc.classList.remove('locked'); tabDesc.querySelector('.lockDot').textContent='2';}
+else{tabDesc.classList.add('locked'); tabDesc.querySelector('.lockDot').textContent='🔒';}
+}
+function applySectionLocks(){
+document.getElementById('overlayCorps').style.display = state.done.famille ? 'none':'flex';
+document.getElementById('overlayDesc').style.display = state.done.corps ? 'none':'flex';
+document.getElementById('sec-corps').classList.toggle('lockedSection', !state.done.famille);
+document.getElementById('sec-description').classList.toggle('lockedSection', !state.done.corps);
+}
+
+// ===================== POSSESSIUS (mini-repte) =====================
+function buildPosDrag(){
+const box=document.getElementById('posDrag'); box.innerHTML='';
+let clicked=0, correct=0;
+const words=shuffle(POS_WORDS);
+words.forEach(item=>{
+const b=document.createElement('button'); b.type='button'; b.className='posWord';
+b.textContent=item.w;
+b.onclick=()=>{
+if(b.disabled) return;
+b.disabled=true; clicked++;
+if(item.g==='f'){b.classList.add('right'); correct++;}
+else{b.classList.add('bad');}
+if(clicked===words.length){
+const total=words.filter(x=>x.g==='f').length;
+const ok=correct===total;
+state.famille.posDone=ok;
+setFb('posFb', ok, ok?'✅ Perfecte! Has trobat totes les paraules femenines.':`Has marcat ${correct}/${total} de "ma". Llegeix la taula i torna-ho a provar.`);
+if(!ok){ setTimeout(()=>{ buildPosDrag(); },1500); }
+save();
+}
+};
+box.appendChild(b);
+});
+}
+
+// ===================== FAMILLE =====================
+function buildFamCards(){
+const grid=document.getElementById('famGrid'); grid.innerHTML='';
+FAMILY.forEach(v=>{
+const c=document.createElement('div'); c.className='cardlet';
+const star=v.core?'⭐':'☆';
+const tagClass=v.core?'core':'bonus';
+c.innerHTML=`<div class="cardletHead"><div class="tag ${tagClass}">${star} Famille</div><button class="ttsBtn" type="button">🔊</button></div><div class="emoji">${v.emoji}</div><div class="ca"><strong>${v.ca}</strong></div><div class="fr">${v.fr}</div>`;
+c.querySelector('.ttsBtn').onclick=(e)=>{e.stopPropagation(); speakFR(v.fr);};
+grid.appendChild(c);
+});
+}
+function animateLines(){ const els=[...document.querySelectorAll('#famLines .line')]; els.forEach(e=>e.classList.remove('show')); els.forEach((e,i)=>setTimeout(()=>e.classList.add('show'), 90*i)); }
+function getHelper(){return FAMILY.find(x=>x.key===state.famille.helperKey) || FAMILY[2];}
+function helperCap(){return getHelper().gender==='f'?'Elle':'Il';}
+function renderFamPhrase(){
+const size=Number(state.famille.size||4);
+const sib=state.famille.sib||'frere';
+const helper=getHelper();
+const pron = helper.gender==='f' ? 'Elle' : 'Il';
+const sibMap={unique:'Je suis enfant unique.',frere:"J'ai un frère.",soeur:"J'ai une sœur.",both:"J'ai un frère et une sœur.",plus:"J'ai des frères et des sœurs."};
+const lines=[`Dans ma famille, nous sommes ${size}.`,'Il y a mon père et ma mère.',sibMap[sib]||sibMap.frere,`Pour la mission, c'est ${helper.fr}.`,`${pron} va aider Zoé à suivre la carte.`];
+state.famille.phrase=lines.join(' ');
+document.getElementById('famLines').innerHTML=lines.map(t=>`<div class="line">${t}</div>`).join('');
+animateLines();
+document.getElementById('helperLabel').textContent=helper.fr;
+document.getElementById('helperPron').textContent=pron;
+updateFileNameHints();
+updatePowerHint();
+}
+function buildFamGuided(){
+const sizeRow=document.getElementById('sizeChoices'); sizeRow.innerHTML='';
+[2,3,4,5,6,7,8].forEach(n=>{const b=document.createElement('button'); b.type='button'; b.className='bigChip'+(Number(state.famille.size||4)===n?' active':''); b.textContent=String(n);
+b.onclick=()=>{state.famille.size=n; sizeRow.querySelectorAll('.bigChip').forEach(x=>x.classList.remove('active')); b.classList.add('active'); renderFamPhrase(); save();}; sizeRow.appendChild(b);
+});
+const sibRow=document.getElementById('sibChoices'); sibRow.innerHTML='';
+const sibChoices=[{key:'unique',label:'👶 fill únic'},{key:'frere',label:'👦 1 germà'},{key:'soeur',label:'👧 1 germana'},{key:'both',label:'👦👧 germà i germana'},{key:'plus',label:'👫 més'}];
+sibChoices.forEach(ch=>{const b=document.createElement('button'); b.type='button'; b.className='chip'+(state.famille.sib===ch.key?' active':''); b.textContent=ch.label;
+b.onclick=()=>{state.famille.sib=ch.key; sibRow.querySelectorAll('.chip').forEach(x=>x.classList.remove('active')); b.classList.add('active'); renderFamPhrase(); save();}; sibRow.appendChild(b);
+});
+const helperRow=document.getElementById('helperChoices'); helperRow.innerHTML='';
+FAMILY.forEach(h=>{const b=document.createElement('button'); b.type='button'; b.className='chip'+(state.famille.helperKey===h.key?' active':''); b.innerHTML=`${h.emoji} <span style="font-size:.78rem">${h.fr}</span>`;
+b.onclick=()=>{state.famille.helperKey=h.key; helperRow.querySelectorAll('.chip').forEach(x=>x.classList.remove('active')); b.classList.add('active'); renderFamPhrase(); save();}; helperRow.appendChild(b);
+});
+document.getElementById('famSpeak').onclick=()=>speakFR(state.famille.phrase);
+document.getElementById('famCopy').onclick=async()=>{const ok=await copyText(state.famille.phrase); toast(ok?'📋 Copiat':'Ctrl+C');};
+document.getElementById('famDone').onclick=()=>{
+if(!state.famille.posDone){
+setFb('famFb',false,'Primer fes el mini-repte de possessius (a dalt).');
+toast('⚠️ Fes el repte de possessius');
+return;
+}
+state.done.famille=true; setFb('famFb',true,'✅ Famille completat! Passa a Corps.'); toast('🔓 Corps desbloquejat'); save(); location.hash='#sec-corps';
+};
+renderFamPhrase();
+}
+
+// ===================== CORPS: vocab =====================
+function buildBodyCards(){
+const grid=document.getElementById('bodyGrid'); grid.innerHTML='';
+BODY.forEach(v=>{const c=document.createElement('div'); c.className='cardlet';
+if(state.corps.vocabHeard.includes(v.fr)) c.classList.add('heard');
+c.innerHTML=`<div class="cardletHead"><div class="tag">Corps</div><button class="ttsBtn" type="button">🔊</button></div><div class="emoji">${v.emoji||''}</div><div class="ca"><strong>${v.ca}</strong></div><div class="fr">${v.fr}</div>`;
+c.querySelector('.ttsBtn').onclick=(e)=>{
+e.stopPropagation(); speakFR(v.fr);
+if(!state.corps.vocabHeard.includes(v.fr)) state.corps.vocabHeard.push(v.fr);
+c.classList.add('heard');
+document.getElementById('vocabCount').textContent=Math.min(10,state.corps.vocabHeard.length);
+checkVocabA(); save();
+};
+grid.appendChild(c);
+});
+document.getElementById('vocabCount').textContent=Math.min(10,state.corps.vocabHeard.length);
+}
+function checkVocabA(){ if(!state.corps.vocabDone && state.corps.vocabHeard.length>=10){state.corps.vocabDone=true; setFb('vocabFb',true,'✅ Repte A superat! Has escoltat 10 paraules.'); toast('✅ Vocabulari'); updateCorpsProgress();} }
+
+// ===================== VÍDEO + MINI-VALIDACIÓ =====================
+let videoTimer=null; let remaining=VIDEO_SECONDS;
+function updateTimerUI(){
+document.getElementById('timerLeft').textContent=String(Math.max(0,remaining));
+const pct=((VIDEO_SECONDS-remaining)/VIDEO_SECONDS)*100;
+document.getElementById('timerFill').style.width=Math.min(100,Math.max(0,pct))+'%';
+}
+function startVideoAutoTimer(){
+if(state.corps.videoTimerDone || videoTimer) return;
+if(state.corps.videoQuizDone){ return; }
+videoTimer=setInterval(()=>{remaining-=1; updateTimerUI(); if(remaining<=0){clearInterval(videoTimer); videoTimer=null; markTimerDone();}},1000);
+}
+function markTimerDone(){
+state.corps.videoTimerDone=true;
+showVideoQuiz();
+save();
+}
+function buildVideoQuiz(){
+// Una pregunta aleatòria sobre el vídeo
+const qs=[
+{q:"Quina d'aquestes parts del cos NO surt al vídeo?",choices:["la tête","les mains","les jambes","les pieds"],wrongIsAnswer:"la tête",hint:"Apareixen tête, bras, mains, jambes i pieds."},
+{q:"Com es diu 'les mans' en francès?",choices:["les pieds","les mains","les jambes","les bras"],answer:"les mains"},
+{q:"Si vols dir 'el cap', dius:",choices:["la tête","le bras","les yeux","le cou"],answer:"la tête"},
+{q:"Quina paraula significa 'les cames'?",choices:["les jambes","les pieds","les bras","les épaules"],answer:"les jambes"}
+];
+const q=qs[Math.floor(Math.random()*qs.length)];
+const ans = q.answer || q.wrongIsAnswer;
+state.corps.videoQuizData={q:q.q,choices:shuffle(q.choices),answer:ans,hint:q.hint||''};
+}
+function showVideoQuiz(){
+if(!state.corps.videoQuizData) buildVideoQuiz();
+const q=state.corps.videoQuizData;
+document.getElementById('videoQuizBox').style.display='block';
+document.getElementById('videoQuizQ').textContent=q.q;
+const box=document.getElementById('videoQuizChoices'); box.innerHTML='';
+q.choices.forEach(ch=>{
+const b=document.createElement('button'); b.className='qBtn'; b.textContent=ch;
+b.onclick=()=>{
+const ok=ch===q.answer;
+[...box.querySelectorAll('.qBtn')].forEach(x=>{x.disabled=true; if(x.textContent===q.answer) x.classList.add('correct');});
+if(!ok){ b.classList.add('wrong'); setFb('videoQuizFb',false,'Resposta correcta: <b>'+q.answer+'</b>. Torna a clicar el botó del vídeo per provar una altra pregunta.'); }
+else{
+state.corps.videoQuizDone=true;
+state.corps.videoDone=true;
+setFb('videoQuizFb',true,'✅ Correcte! Poder desbloquejat 🔓');
+setFb('videoFb',true,'🔓 Has superat el Repte B!');
+buildPowerChoices(); updatePowerHint(); updateCorpsProgress(); save();
+}
+};
+box.appendChild(b);
+});
+}
+function initAutoObserver(){
+const box=document.getElementById('videoBox');
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting && e.intersectionRatio>=0.55){startVideoAutoTimer();}});},{threshold:[0.55]});
+obs.observe(box);
+}
+
+// ===================== QUIZ =====================
+function buildQuiz(){
+const pool=[...BODY];
+const qs=shuffle(pool).slice(0,5).map(item=>{const correct=item.fr; const distract=shuffle(pool.filter(v=>v.fr!==correct)).slice(0,3).map(v=>v.fr); return {q:item.ca, choices:shuffle([correct,...distract]), answer:correct};});
+state.corps.quizData=qs; state.corps.quizIdx=0; state.corps.quizCorrect=0;
+renderQuizQ();
+document.getElementById('quizNext').onclick=()=>{
+document.getElementById('quizFb').className='fb';
+state.corps.quizIdx++;
+if(state.corps.quizIdx>=qs.length){
+const ok=state.corps.quizCorrect>=3; state.corps.quizDone=ok;
+setFb('quizFb',ok, ok?`✅ Quiz superat! (${state.corps.quizCorrect}/5)`:`Has fet ${state.corps.quizCorrect}/5. Necessites 3 per passar. Prem "Tornar a fer".`);
+document.getElementById('quizQ').textContent='';
+document.getElementById('quizChoices').innerHTML='';
+document.getElementById('quizMeta').textContent=`Final: ${state.corps.quizCorrect}/5`;
+document.getElementById('quizNext').style.display='none';
+if(!ok){ document.getElementById('quizRestart').style.display='inline-flex'; }
+else{ document.getElementById('quizRestart').style.display='none'; }
+toast(ok?'✅ Quiz':'↺ Quiz');
+updateCorpsProgress(); save(); return;
+}
+renderQuizQ(); save();
+};
+document.getElementById('quizRestart').onclick=()=>{
+document.getElementById('quizRestart').style.display='none';
+document.getElementById('quizFb').className='fb';
+buildQuiz();
+};
+}
+function renderQuizQ(){
+const q=state.corps.quizData[state.corps.quizIdx];
+document.getElementById('quizMeta').textContent=`Pregunta ${state.corps.quizIdx+1}/5 · correctes: ${state.corps.quizCorrect}`;
+document.getElementById('quizQ').textContent=`Com es diu en francès: ${q.q}?`;
+const box=document.getElementById('quizChoices'); box.innerHTML='';
+q.choices.forEach(ch=>{
+const b=document.createElement('button'); b.className='qBtn'; b.textContent=ch;
+b.onclick=()=>{
+const ok=ch===q.answer;
+if(ok){b.classList.add('correct'); state.corps.quizCorrect++;}
+else{
+b.classList.add('wrong');
+[...box.querySelectorAll('.qBtn')].forEach(x=>{ if(x.textContent===q.answer) x.classList.add('revealed'); });
+setFb('quizFb',false,'La resposta correcta era: <b>'+q.answer+'</b>');
+}
+[...box.querySelectorAll('.qBtn')].forEach(x=>x.disabled=true);
+document.getElementById('quizNext').style.display='inline-flex';
+save();
+};
+box.appendChild(b);
+});
+document.getElementById('quizNext').style.display='none';
+}
+function updateCorpsProgress(){
+const done=[state.corps.vocabDone,state.corps.videoDone,state.corps.quizDone].filter(Boolean).length;
+document.getElementById('corpsLine').textContent=`${done}/3 reptes`;
+document.getElementById('corpsFill').style.width=Math.round(done/3*100)+'%';
+document.getElementById('powerStatus').textContent = state.corps.videoDone? 'Poder desbloquejat ✅' : 'Mira el vídeo i respon la pregunta per desbloquejar el poder.';
+if(done===3){
+const btn=document.getElementById('corpsDone'); btn.style.display='inline-flex';
+btn.onclick=()=>{state.done.corps=true; toast('🔓 Description desbloquejada'); save(); location.hash='#sec-description'; initDescriptionUI();};
+}
+}
+
+// ===================== DESCRIPTION =====================
+function getPower(){return POWERS.find(p=>p.key===state.desc.powerKey) || POWERS[0];}
+function powerLinkLine(){
+const pron=helperCap();
+const p=getPower();
+return `Grâce à ses ${p.part} ${p.adj}, ${pron.toLowerCase()} aide Zoé à suivre la carte.`.replace(/\s+/g,' ').trim();
+}
+function updatePowerHint(){
+const hint=document.getElementById('powerHint');
+if(!state.corps.videoDone) hint.textContent='🔒 Fes el vídeo i contesta la pregunta per desbloquejar el poder.';
+else hint.innerHTML='💡 Frase pont (l\'inclourem al text): <i>'+powerLinkLine()+'</i>';
+}
+function buildPowerChoices(){
+const prow=document.getElementById('powerChoices'); prow.innerHTML='';
+POWERS.forEach(p=>{const b=document.createElement('button'); const locked=!state.corps.videoDone;
+b.className='chip'+(state.desc.powerKey===p.key?' active':'')+(locked?' locked':'');
+b.textContent=locked?('🔒 '+p.label):p.label;
+b.onclick=()=>{ if(locked){toast('Fes el vídeo'); return;} state.desc.powerKey=p.key; prow.querySelectorAll('.chip').forEach(x=>x.classList.remove('active')); b.classList.add('active'); updatePowerHint(); updateCoach(); save(); };
+prow.appendChild(b);
+});
+}
+function addBodySentence(){
+const Cap=helperCap();
+const opts=[`${Cap} a deux bras et deux mains.`,`${Cap} a deux jambes et deux pieds.`,`${Cap} a une tête, un nez et une bouche.`,`${Cap} a deux oreilles et un cou.`];
+const add=opts[Math.floor(Math.random()*opts.length)];
+const ta=document.getElementById('finalText'); ta.value=(ta.value.trim()? ta.value.trim()+' '+add : add); syncFinalWC();
+}
+function genBaseText(){
+const Cap=helperCap();
+const hair=document.getElementById('hair').value; const eyes=document.getElementById('eyes').value;
+const avatar=state.desc.avatar||'🕵️';
+const power=getPower();
+const powLine=getHelper().gender==='f'?power.f:power.m;
+const fam=state.famille.phrase || "Dans ma famille, nous sommes 4. Il y a mon père et ma mère. J'ai un frère. Pour la mission, c'est mon frère. Il va aider Zoé à suivre la carte.";
+const linkLine=state.corps.videoDone?powerLinkLine():'Je regarde la vidéo des parties du corps.';
+document.getElementById('finalText').value=`Bonjour ! ${fam} ${Cap} a les cheveux ${hair} et les yeux ${eyes}. ${powLine} ${linkLine} Zoé arrive à l'île du trésor !`;
+syncFinalWC();
+toast('✨ Text base generat');
+}
+function wc(text){const t=(text||'').trim(); return t? t.split(/\s+/).filter(Boolean).length:0;}
+function bodyHits(text){const patterns=[/deux\s+bras/i,/deux\s+jambes/i,/deux\s+mains/i,/deux\s+pieds/i,/une\s+tête/i,/deux\s+oreilles/i,/un\s+nez/i,/une\s+bouche/i]; return patterns.reduce((a,rx)=>a+(rx.test(text)?1:0),0);}
+function spellWarnings(text){
+const warnings=[];
+const checks=[
+{bad:/\bmere\b/i, good:'mère'},
+{bad:/\bpere\b/i, good:'père'},
+{bad:/\bfrere\b/i, good:'frère'},
+{bad:/\bsoeur\b/i, good:'sœur (o "soeur")'},
+{bad:/\btete\b/i, good:'tête'},
+{bad:/\byeu\b/i, good:'yeux'},
+{bad:/\bjambe\b(?!s)/i, good:'jambes (plural)'},
+{bad:/\bpied\b(?!s)/i, good:'pieds (plural)'},
+{bad:/\bcheveu\b(?!x)/i, good:'cheveux'}
+];
+checks.forEach(c=>{ if(c.bad.test(text)) warnings.push('"'+text.match(c.bad)[0]+'" → <b>'+c.good+'</b>'); });
+return warnings;
+}
+function evaluateLevel(text){
+const n=wc(text); const hits=bodyHits(text);
+if(n>=45 && hits>=2) return {level:'OR', badge:'🏆', grade:'10/10', detail:'Nivell OR', ok:true};
+if(n>=35 && hits>=1) return {level:'ARGENT', badge:'🥈', grade:'8,5/10', detail:'Nivell ARGENT', ok:true};
+if(n>=25) return {level:'BRONZE', badge:'🥉', grade:'7/10', detail:'Nivell BRONZE', ok:true};
+return {level:'—', badge:'—', grade:'—', detail:'Encara no arribes a Bronze (mínim 25 paraules)', ok:false};
+}
+function updateCoach(){
+const text=(document.getElementById('finalText').value||'').trim();
+const n=wc(text); const hits=bodyHits(text); const cap=helperCap();
+const tips=[];
+tips.push(`📊 Paraules: <b>${n}</b> · Expressions del cos: <b>${hits}</b>`);
+if(n<25){ tips.push(`→ Afegeix <b>${25-n}</b> paraules per arribar a <b>BRONZE 🥉</b>.`); }
+else if(n<35){ tips.push(`→ 🥉 BRONZE ✅. Per ARGENT 🥈: <b>${35-n}</b> paraules més${hits<1?' i <b>1</b> expressió (ex: <i>'+cap+' a deux mains</i>)':''}.`); }
+else if(n<45){ if(hits<1) tips.push(`→ Tens paraules per ARGENT, falta: <b>${cap} a deux mains.</b>`); else tips.push(`→ 🥈 ARGENT ✅. Per OR 🏆: <b>${45-n}</b> paraules i <b>${2-hits}</b> expressions més.`); }
+else { if(hits<2) tips.push(`→ Tens paraules per OR, falta: <b>${cap} a deux jambes.</b>`); else tips.push(`→ <b>🏆 OR aconseguit!</b>`); }
+const sp=spellWarnings(text);
+if(sp.length){ tips.push('✏️ <b>Ortografia:</b> '+sp.join(' · ')); }
+document.getElementById('liveCoach').innerHTML='🧭 '+tips.join('<br>');
+const ev=evaluateLevel(text);
+document.getElementById('btnToOr').style.display=(ev.level==='OR')?'none':'inline-flex';
+}
+function syncFinalWC(){
+const text=document.getElementById('finalText').value||'';
+state.desc.text=text;
+document.getElementById('wc').textContent=wc(text);
+updateCoach();
+const ev=evaluateLevel(text);
+if(ev.ok){ state.done.desc=true; setFb('finalFb',true,`${ev.badge} ${ev.detail} · Nota: ${ev.grade}`); }
+else { state.done.desc=false; setFb('finalFb',false,ev.detail); }
+save();
+}
+function addPhraseForOR(){
+const ta=document.getElementById('finalText'); let text=(ta.value||'').trim(); const cap=helperCap();
+const candidates=[`${cap} a deux mains.`,`${cap} a deux jambes.`,`${cap} a deux bras.`,`${cap} a deux pieds.`,`${cap} a deux oreilles.`,`${cap} a une tête.`];
+const low=text.toLowerCase(); let chosen=null;
+for(const s of candidates){ if(!low.includes(s.toLowerCase())){ chosen=s; break; } }
+if(!chosen) chosen=candidates[1];
+if(text && !/[.!?]\s*$/.test(text)) text+='.';
+text=(text+' '+chosen).trim();
+const fillers=[(cap==='Il')?`${cap} est très courageux.`:`${cap} est très courageuse.`,`${cap} est sur une île mystérieuse.`,`Zoé est très contente.`];
+for(const f of fillers){ if(wc(text)>=45) break; if(!text.toLowerCase().includes(f.toLowerCase())) text+=' '+f; }
+ta.value=text; toast('✅ Frase afegida'); syncFinalWC();
+}
+function initDescriptionUI(){
+const h=getHelper();
+document.getElementById('helperLabel').textContent=h.fr;
+document.getElementById('helperPron').textContent=h.gender==='f'?'Elle':'Il';
+const options=(h.gender==='f')?
+[{ico:'🕵️‍♀️',lbl:'Agent'},{ico:'🧙‍♀️',lbl:'Magicienne'},{ico:'🧭',lbl:'Exploratrice'},{ico:'🧑‍🚀',lbl:'Astronaute'}]:
+[{ico:'🕵️',lbl:'Agent'},{ico:'🧙‍♂️',lbl:'Magicien'},{ico:'🧭',lbl:'Explorateur'},{ico:'🧑‍🚀',lbl:'Astronaute'}];
+const grid=document.getElementById('avatarGrid'); grid.innerHTML='';
+options.forEach(opt=>{const d=document.createElement('div'); d.className='cardlet'; d.style.minHeight='unset'; d.style.cursor='pointer'; d.innerHTML=`<div style="font-size:2rem">${opt.ico}</div><div class="small" style="font-weight:900;margin-top:6px">${opt.lbl}</div>`; if(state.desc.avatar===opt.ico) d.style.borderColor='var(--sage)'; d.onclick=()=>{state.desc.avatar=opt.ico; initDescriptionUI(); save();}; grid.appendChild(d);});
+buildPowerChoices(); updatePowerHint();
+document.getElementById('hair').value=state.desc.hair||'bruns';
+document.getElementById('eyes').value=state.desc.eyes||'bleus';
+document.getElementById('hair').onchange=e=>{state.desc.hair=e.target.value; save();};
+document.getElementById('eyes').onchange=e=>{state.desc.eyes=e.target.value; save();};
+const ta=document.getElementById('finalText'); ta.value=state.desc.text||''; ta.oninput=syncFinalWC;
+const nm=document.getElementById('studentName'); nm.value=state.student.name||''; nm.oninput=()=>{state.student.name=nm.value; updateFileNameHints(); save();};
+updateFileNameHints(); syncFinalWC();
+}
+function safeFileName(name){ const t=(name||'').trim(); if(!t) return 'Nom_Cognom_Zoe.pdf'; return t.replace(/\s+/g,'_').replace(/[^\wÀ-ÿ_-]/g,'')+'_Zoe.pdf'; }
+function updateFileNameHints(){ const fn=safeFileName(state.student.name||''); document.getElementById('fileNameHint').textContent=fn; document.getElementById('fileNameHint2').textContent=fn; }
+
+// ===================== RESULTAT + PDF =====================
+function openReward(){
+const name=(state.student.name||'').trim();
+const ev=evaluateLevel((state.desc.text||'').trim());
+if(!name){ setFb('nameFb',false,'⚠️ Posa el teu nom abans de generar el PDF.'); toast('Falta el nom'); return; }
+setFb('nameFb',true,'');
+if(!ev.ok){ setFb('finalFb',false,'⚠️ '+ev.detail); toast('Text insuficient'); return; }
+document.getElementById('rewardTitle').textContent=`${ev.badge} ${name}`;
+document.getElementById('rewardLevel').textContent=`${ev.detail} · Nota ${ev.grade}`;
+document.getElementById('reward').style.display='flex';
+}
+function preparePrint(){
+const name=(state.student.name||'').trim()||'—';
+const ev=evaluateLevel(state.desc.text||'');
+const helper=getHelper();
+const power=getPower();
+const today=new Date(); const d=today.toLocaleDateString('ca-ES');
+document.getElementById('psName').textContent=name;
+document.getElementById('psLevel').textContent=ev.ok?(ev.badge+' '+ev.detail):'—';
+document.getElementById('psGrade').textContent=ev.ok?ev.grade:'—';
+document.getElementById('psDate').textContent=d;
+document.getElementById('psFamille').textContent=(state.famille.phrase||'').trim();
+document.getElementById('psText').textContent=(state.desc.text||'').trim();
+const sib={unique:'fill únic',frere:'1 germà',soeur:'1 germana',both:'germà i germana',plus:'més germans'}[state.famille.sib]||'—';
+document.getElementById('psSummary').innerHTML=
+`• Família: ${state.famille.size} membres (${sib})<br>`+
+`• Ajudant: <b>${helper.fr}</b> (${helper.ca})<br>`+
+`• Superpoder: <b>${power.label.replace(/^[^a-zA-ZÀ-ÿ]+/,'')}</b><br>`+
+`• Vocabulari del cos escoltat: ${state.corps.vocabHeard.length}/15<br>`+
+`• Quiz: ${state.corps.quizCorrect}/5`;
+}
+function printNow(){ preparePrint(); setTimeout(()=>window.print(),100); }
+
+// ===================== WIRE =====================
+function wire(){
+document.getElementById('howBtn').onclick=()=>{ document.getElementById('startScreen').style.display='none'; document.getElementById('planModal').style.display='flex'; };
+document.getElementById('finalSubmit').onclick=openReward;
+document.getElementById('rewardPrint').onclick=()=>{document.getElementById('reward').style.display='none'; document.getElementById('classroomModal').style.display='flex';};
+document.getElementById('rewardClose').onclick=()=>{document.getElementById('reward').style.display='none';};
+document.getElementById('openPrintFromModal').onclick=()=>{document.getElementById('classroomModal').style.display='none'; printNow();};
+document.getElementById('closeClassroom').onclick=()=>{document.getElementById('classroomModal').style.display='none';};
+document.getElementById('resetAll').onclick=resetAll;
+document.getElementById('addBody').onclick=addBodySentence;
+document.getElementById('genFinal').onclick=genBaseText;
+document.getElementById('speakFinal').onclick=()=>speakFR(document.getElementById('finalText').value||'');
+document.getElementById('btnToOr').onclick=addPhraseForOR;
+document.getElementById('copyFileName').onclick=async()=>{const ok=await copyText(document.getElementById('fileNameHint').textContent); toast(ok?'📋 Copiat':'Ctrl+C');};
+document.getElementById('copyFileName2').onclick=async()=>{const ok=await copyText(document.getElementById('fileNameHint2').textContent); toast(ok?'📋 Copiat':'Ctrl+C');};
+document.getElementById('showRubric').onclick=()=>{document.getElementById('rubricModal').style.display='flex';};
+document.getElementById('closeRubric').onclick=()=>{document.getElementById('rubricModal').style.display='none';};
+document.getElementById('showPlan').onclick=()=>{document.getElementById('planModal').style.display='flex';};
+document.getElementById('closePlan').onclick=()=>{document.getElementById('planModal').style.display='none';};
+// click backdrop tanca modals
+['reward','classroomModal','rubricModal','planModal'].forEach(id=>{
+document.getElementById(id).addEventListener('click',(e)=>{ if(e.target.id===id) e.target.style.display='none'; });
+});
+}
+
+// ===================== INIT =====================
+load();
+wire();
+updateHUD(); updateLocks(); applySectionLocks();
+buildPosDrag();
+buildFamCards();
+buildFamGuided();
+buildBodyCards();
+checkVocabA();
+updateTimerUI();
+initAutoObserver();
+buildVideoQuiz();
+buildQuiz();
+updateCorpsProgress();
+initDescriptionUI();
+updateFileNameHints();
+updatePowerHint();
+// Si el vídeo ja s'havia validat, mostrem la pregunta resolta
+if(state.corps.videoQuizDone){ document.getElementById('videoQuizBox').style.display='block'; setFb('videoQuizFb',true,'✅ Ja vas respondre correctament.'); setFb('videoFb',true,'🔓 Repte B superat.'); }
+save();
+</script>
+</body>
+</html>
